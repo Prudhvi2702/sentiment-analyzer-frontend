@@ -1,14 +1,58 @@
-// Sentiment analysis API functions
+/**
+ * Sentiment Analysis API Module
+ * 
+ * This module provides all API functions for sentiment analysis operations.
+ * It handles communication with the backend sentiment analysis service
+ * and provides a clean interface for the frontend components.
+ * 
+ * Features:
+ * - Single text sentiment analysis
+ * - Batch file processing
+ * - Authentication token management
+ * - Error handling and response validation
+ * - Environment-based API configuration
+ * 
+ * @author Prudhvi2702
+ * @version 1.0.0
+ * @module
+ */
+
 import { AuthService } from "./auth"
 
+// API base URL with environment variable fallback
 const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL || "https://ox4zaij71h.execute-api.us-west-1.amazonaws.com/prod"
 
+/**
+ * Sentiment Analysis Result Interface
+ * 
+ * Defines the structure of sentiment analysis results returned by the API.
+ * Used for both single text analysis and individual results in batch processing.
+ * 
+ * @interface SentimentResult
+ * @property sentiment - The classified sentiment (Positive, Negative, or Neutral)
+ * @property confidence - Confidence score from 0-1 indicating prediction certainty
+ * @property review - Optional original text that was analyzed
+ */
 export interface SentimentResult {
   sentiment: "Positive" | "Negative" | "Neutral"
   confidence: number
   review?: string
 }
 
+/**
+ * Batch Analysis Result Interface
+ * 
+ * Defines the structure of batch sentiment analysis results returned by the API.
+ * Contains metadata about the batch processing and an array of individual results.
+ * 
+ * @interface BatchResult
+ * @property file_name - Name of the uploaded CSV file
+ * @property message - Status message from the batch processing
+ * @property processing_timestamp - ISO timestamp of when processing completed
+ * @property reviews - Array of individual sentiment analysis results
+ * @property s3_key - S3 storage key for the uploaded file
+ * @property summary - Optional summary statistics of the batch results
+ */
 export interface BatchResult {
   file_name: string
   message: string

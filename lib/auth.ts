@@ -1,4 +1,22 @@
-// Authentication utilities and API functions
+/**
+ * Authentication Module
+ * 
+ * This module provides authentication utilities and API functions for user management.
+ * It handles user login, signup, token management, and authentication state.
+ * 
+ * Features:
+ * - JWT token management with localStorage
+ * - User authentication and registration
+ * - Token validation and refresh
+ * - Secure token storage and retrieval
+ * - Environment-based API configuration
+ * 
+ * @author Prudhvi2702
+ * @version 1.0.0
+ * @module
+ */
+
+// API base URL with environment variable fallback
 const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL || "https://ox4zaij71h.execute-api.us-west-1.amazonaws.com/prod"
 
 export interface User {

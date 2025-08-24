@@ -1,3 +1,19 @@
+/**
+ * Single Sentiment Analysis Page
+ * 
+ * This page allows users to analyze the sentiment of individual text inputs.
+ * Features:
+ * - Real-time sentiment analysis
+ * - Confidence scoring with neutral detection
+ * - Professional UI with loading states
+ * - Error handling and user feedback
+ * - Responsive design for all devices
+ * 
+ * @author Prudhvi2702
+ * @version 1.0.0
+ * @component
+ */
+
 "use client"
 
 import { useState } from "react"
@@ -13,7 +29,25 @@ import { SentimentAPI, type SentimentResult } from "@/lib/sentiment-api"
 import { SentimentBadge } from "@/components/sentiment-badge"
 import { Loader2, BarChart3, MessageSquare, TrendingUp } from "lucide-react"
 
-// Helper function to normalize sentiment values with confidence-based neutral detection
+/**
+ * Sentiment Normalization Function
+ * 
+ * Normalizes sentiment values from the API and applies confidence-based neutral detection.
+ * This function ensures consistent sentiment classification across the application.
+ * 
+ * Features:
+ * - Handles uppercase/lowercase sentiment values
+ * - Implements confidence threshold for neutral classification
+ * - Supports multiple sentiment value formats
+ * 
+ * @param sentiment - Raw sentiment value from API (e.g., "POSITIVE", "NEGATIVE")
+ * @param confidence - Confidence score from 0-1 (optional)
+ * @returns Normalized sentiment: "Positive", "Negative", or "Neutral"
+ * 
+ * @example
+ * normalizeSentiment("POSITIVE", 0.8) // Returns "Positive"
+ * normalizeSentiment("POSITIVE", 0.6) // Returns "Neutral" (low confidence)
+ */
 const normalizeSentiment = (sentiment: string, confidence?: number): "Positive" | "Negative" | "Neutral" => {
   const normalized = sentiment?.toLowerCase();
   
@@ -27,10 +61,30 @@ const normalizeSentiment = (sentiment: string, confidence?: number): "Positive" 
   return "Neutral";
 };
 
+/**
+ * Main Sentiment Analysis Page Component
+ * 
+ * Provides a complete interface for single text sentiment analysis.
+ * Handles user input, API communication, and result display.
+ * 
+ * State Management:
+ * - text: User input text for analysis
+ * - isAnalyzing: Loading state during API calls
+ * - result: Analysis results from the API
+ * 
+ * @returns JSX element with the complete sentiment analysis interface
+ */
 export default function SentimentAnalysisPage() {
+  // State for user input text
   const [text, setText] = useState("")
+  
+  // Loading state during analysis
   const [isAnalyzing, setIsAnalyzing] = useState(false)
+  
+  // Analysis results from API
   const [result, setResult] = useState<SentimentResult | null>(null)
+  
+  // Authentication and utility hooks
   const { isAuthenticated, isLoading } = useAuth()
   const { toast } = useToast()
   const router = useRouter()

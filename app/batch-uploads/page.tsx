@@ -1,3 +1,23 @@
+/**
+ * Batch Uploads Analysis Page
+ * 
+ * This page allows users to upload CSV files containing multiple reviews
+ * for bulk sentiment analysis. It provides a complete workflow from file
+ * upload to results visualization.
+ * 
+ * Features:
+ * - Drag-and-drop file upload
+ * - CSV file validation and processing
+ * - Batch sentiment analysis with progress tracking
+ * - Comprehensive results display with statistics
+ * - Error handling and user feedback
+ * - Responsive design for all devices
+ * 
+ * @author Prudhvi2702
+ * @version 1.0.0
+ * @component
+ */
+
 "use client";
 
 import { Button } from "@/components/ui/button";
