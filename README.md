@@ -26,7 +26,7 @@ This project demonstrates a complete end-to-end solution for AI-powered sentimen
 - **Environment Variables** - Configurable API endpoints for different environments
 - **Error Handling** - Graceful error management with user-friendly messages
 - **Loading States** - Professional loading animations and progress indicators
-- **Data Visualization** - Sentiment distribution charts and statistics
+
 
 ## 🛠️ Tech Stack
 
